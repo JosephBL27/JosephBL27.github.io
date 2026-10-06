@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A provenance-first Texas Hold'em decision trainer with exact legal amounts and honest strategy-source limits."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23255b45'/%3E%3Cpath d='M9 21c3-8 11-8 14 0M16 7v14' fill='none' stroke='%23f4f0e7' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <title>Hand Compass — Hold'em Study Table</title>
+    <script>
+      /* Hosted edition: the Rust solver sidecar runs only on the author's machine.
+         Refuse loopback requests up front so the browser never probes the visitor's
+         own device; the app then runs on its bundled solve and labeled heuristics. */
+      (function () {
+        var nativeFetch = window.fetch;
+        if (!nativeFetch) return;
+        window.fetch = function (input, init) {
+          try {
+            var raw = typeof input === "string" ? input : (input && input.url) || String(input);
+            var url = new URL(raw, window.location.href);
+            var host = url.hostname.replace(/^\[|\]$/g, "");
+            var loopback = host === "127.0.0.1" || host === "localhost" || host === "::1";
+            if (loopback && url.origin !== window.location.origin) {
+              return Promise.reject(new TypeError("The local solver is not part of the hosted edition."));
+            }
+          } catch (e) {}
+          return nativeFetch.apply(this, arguments);
+        };
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-B9BEr7cr.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Cm32NT1z.css">
+  </head>
+  <body>
+    <!--
+    THESIS: The hand is studied at a real table, not inside a dashboard; the decision stays central and the answer stays concealed.
+    OWN-WORLD: Deep green felt, warm paper, charcoal ink, crisp suit red, and thin ledger rules; controls are squared, compact, and tactile.
+    STORY: Read the exact state, choose an engine-issued action, inspect honest evidence, then continue the same hand.
+    FIRST VIEWPORT: A slim study header leads into an eight-seat oval table; legal actions sit directly beneath within thumb and keyboard reach.
+    FORM: Felt-and-ledger study table, pinned by the brief; SEED: study-table-ledger-01.
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
+    <div id="root"></div>
+  </body>
+</html>

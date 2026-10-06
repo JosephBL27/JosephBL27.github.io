@@ -1,0 +1,613 @@
+<!doctype html>
+<!--
+THESIS: Homer's return becomes a working instrument: a monumental volvelle for the twenty-four books, a vellum console for reading, and a stemma for every house the poem names.
+OWN-WORLD: Wine-dark water, bronze linework, terracotta, sea-green, engraved star figures, concentric geometry, and quiet parchment reading sheets.
+STORY: Turn the whole poem, pass through its six movements, select a book, then trace its episodes, figures, recognitions, terminology, and cross-book relations.
+FIRST VIEWPORT: A museum-scale four-ring volvelle and its inscriptions own two thirds of the field; the selected book opens on a live parchment folio; persistent progress and the 24-book rail remain visible.
+FORM: Grand Synthesis — the split reading instrument, the whole-poem overture, and the dense register composed as one continuous zoom from poem to figure.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An interactive reckoning and reading companion for all twenty-four books of Homer's Odyssey.">
+  <meta name="theme-color" content="#0e1c2e">
+  <title>Odyssey — A Living Reckoning</title>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Odyssey — A Living Reckoning">
+  <meta property="og:title" content="Odyssey — A Living Reckoning">
+  <meta property="og:description" content="An interactive reading companion for all twenty-four books of Homer's Odyssey: a turning instrument for the poem's forty days, generation-ranked descent charts for every house, and a plain account of all 185 episodes.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odyssey — A Living Reckoning">
+  <meta name="twitter:description" content="A turning instrument for Homer's twenty-four books: the reckoning of days, descent charts, and a plain account of all 185 episodes.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230e1c2e'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23dfa63f' stroke-width='3'/%3E%3Cpath d='M32 7v50M7 32h50M14 14l36 36M50 14 14 50' stroke='%23dfa63f'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-C8NzgVnD.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CH8X0kqS.css">
+</head>
+<body>
+  <a class="skip-link" href="#reading-console">Skip to current book</a>
+
+  <header class="masthead">
+    <a class="brand" href="#instrument" data-workspace-link="instrument" aria-label="Return to the Homeric instrument">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="9"/>
+        <path d="M24 2v44M2 24h44M8.5 8.5l31 31M39.5 8.5l-31 31"/>
+      </svg>
+      <span><strong>Odyssey</strong><small>A living reckoning</small></span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary workspaces">
+      <a href="#instrument" data-workspace-link="instrument" aria-current="page">Instrument</a>
+      <a href="#reckoning" data-workspace-link="reckoning">Reckoning</a>
+      <a href="#stemma" data-workspace-link="stemma">Stemma</a>
+      <a href="#register" data-workspace-link="register">Register</a>
+      <a href="#lexicon" data-workspace-link="lexicon">Lexicon</a>
+      <a href="#method" data-workspace-link="method">Method</a>
+    </nav>
+    <div class="masthead-actions">
+      <a class="masthead-progress" href="#reckoning" data-workspace-link="reckoning" aria-label="Reading progress: 0 of 24 books read">
+        <span>Progress</span>
+        <strong id="header-progress-count">0 / 24</strong>
+        <i aria-hidden="true"></i>
+      </a>
+      <button class="search-trigger" type="button" data-open-search aria-haspopup="dialog" aria-label="Search the poem">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+        <span>Search the poem</span><kbd>⌘ K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-open-notes aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16l-7-4-7 4z"/></svg>
+        <span class="sr-only">Open reading notes</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section id="instrument" class="hero workspace-layer is-active" data-workspace="instrument" aria-labelledby="page-title">
+      <div class="instrument-side">
+        <!-- The ground the instrument is mounted on: rhumb lines off the
+             wheel's own centre, arcs implying a far larger plate, and a fixed
+             sky. Inert, behind everything, and drawn from the same geometry
+             as the volvelle so the page reads as one object. -->
+        <svg class="instrument-field" id="instrument-field" viewBox="0 0 1200 900"
+             preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"></svg>
+        <div class="hero-intro">
+          <p class="hero-kicker">Homer’s return · sung perhaps c. 700 BCE</p>
+          <h1 id="page-title">Twenty-four books.<br><em>Forty days.</em></h1>
+          <p class="hero-deck">Turn the poem by book, then enter any episode or thematic orbit without leaving your place.</p>
+        </div>
+
+        <div class="volvelle-shell" data-volvelle>
+          <div class="oracular-sparks" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="instrument-key" aria-label="The four working rings">
+            <button type="button" data-ring-guide="era" aria-label="Open the reckoning by movement"><b>I</b><span>Movement</span></button>
+            <button type="button" data-ring-guide="book" aria-label="Show the current book alignment"><b>II</b><span>Book</span></button>
+            <button type="button" data-ring-guide="episode" aria-label="Open the first episode in this book"><b>III</b><span>Episode</span></button>
+            <button type="button" data-ring-guide="theme" aria-label="Open the first theme in this book"><b>IV</b><span>Theme</span></button>
+          </div>
+          <div class="meridian" aria-hidden="true"><i></i><span>NOW READING</span></div>
+          <svg id="volvelle" class="volvelle" viewBox="0 0 800 800" role="group" aria-label="Interactive wheel of the twenty-four books">
+            <defs>
+              <filter id="insetShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#020813" flood-opacity=".55"/>
+              </filter>
+              <radialGradient id="plateWash" cx="50%" cy="42%" r="62%">
+                <stop offset="0%" stop-color="#17415f" stop-opacity=".85"/>
+                <stop offset="62%" stop-color="#0f2b45" stop-opacity=".55"/>
+                <stop offset="100%" stop-color="#050e1c" stop-opacity=".9"/>
+              </radialGradient>
+              <path id="topArc" d="M 120 400 A 280 280 0 0 1 680 400"/>
+            </defs>
+
+            <!-- Layer 1 · static ornament. Inert, and hidden from assistive tech. -->
+            <g class="ornament-layer" aria-hidden="true" pointer-events="none">
+              <circle cx="400" cy="400" r="392" class="astral-edge"/>
+              <circle cx="400" cy="400" r="377" class="astral-field" fill="url(#plateWash)"/>
+              <g id="ornament-meridians" class="ornament-meridians"></g>
+              <g id="ornament-stars" class="ornament-stars"></g>
+              <g id="ornament-catasterisms" class="ornament-catasterisms"></g>
+              <circle cx="400" cy="400" r="356" class="plate-edge"/>
+              <circle cx="400" cy="400" r="330" class="plate-field"/>
+              <circle cx="400" cy="400" r="286" class="plate-ring"/>
+              <circle cx="400" cy="400" r="216" class="plate-ring"/>
+              <circle cx="400" cy="400" r="142" class="plate-ring"/>
+            </g>
+
+            <!-- Layer 2 · dynamic bands, labels, and selection state. -->
+            <g class="wheel-layer" filter="url(#insetShadow)">
+              <g id="era-ring"></g>
+              <g id="book-ring"></g>
+              <g id="episode-ring"></g>
+              <g id="motif-ring"></g>
+              <!-- Ticks and spokes ride above the bands so the engraved scale
+                   reads across them instead of being covered by the fills. -->
+              <g id="ornament-ticks" class="ornament-ticks" aria-hidden="true" pointer-events="none"></g>
+              <g id="ornament-spokes" class="ornament-spokes" aria-hidden="true" pointer-events="none"></g>
+              <g id="ornament-era-labels" class="ornament-era-labels" aria-hidden="true" pointer-events="none"></g>
+            </g>
+
+            <!-- Layer 3 · the sun medallion, generated once from parameters. -->
+            <g id="ornament-sun" class="ornament-sun" aria-hidden="true" pointer-events="none"></g>
+          </svg>
+          <button class="orbis-trigger" type="button" data-workspace-link="nostos" aria-label="Open the whole-poem overture">
+            <span>Whole poem</span>
+            <small>Open the nostos</small>
+          </button>
+          <button class="wheel-step wheel-step--prev" type="button" data-step="-1" aria-label="Previous book">←</button>
+          <button class="wheel-step wheel-step--next" type="button" data-step="1" aria-label="Next book">→</button>
+          <p class="wheel-instruction">Drag the wheel · scroll · or use arrow keys</p>
+        </div>
+      </div>
+
+      <!-- The reader decides how the instrument and the reading share the page.
+           The grip is a real separator, not decoration: drag it, or focus it
+           and use the arrow keys. -->
+      <div class="pane-grip pane-grip--hero" role="separator" tabindex="0"
+           aria-orientation="vertical" aria-label="Resize the reading panel"
+           data-grip="hero" data-grip-property="--console-width" data-grip-edge="right"
+           data-grip-min="360" data-grip-reserve="520" title="Drag to resize · double-click to reset"></div>
+      <aside id="reading-console" class="reading-console" aria-live="polite" aria-atomic="true">
+        <div class="console-registration">
+          <span id="console-era">The Telemachy</span>
+          <span id="console-progress-label">Book 1 of 24</span>
+        </div>
+        <div class="console-heading">
+          <p id="console-date">Day 1 of the poem’s forty</p>
+          <h2><span id="console-book">Book I</span><strong id="console-title">A House Without Its Master</strong></h2>
+          <p id="console-lens">Twenty years of absence, and the first question asked aloud</p>
+        </div>
+        <div class="console-summary">
+          <p id="console-summary"></p>
+          <details class="console-reading">
+            <summary><span>The argument of this book</span><i aria-hidden="true"></i></summary>
+            <div class="console-reading-body">
+              <p id="console-argument"></p>
+              <p class="console-reading-note" id="console-structure"></p>
+              <div class="console-movements">
+                <span class="console-label">How it is put together</span>
+                <ol id="console-movements"></ol>
+              </div>
+              <p class="console-reading-note"><b>What returns.</b> <span id="console-change-argument"></span></p>
+              <p class="console-reading-note"><b>What it hands on.</b> <span id="console-hands-on"></span></p>
+              <div class="console-commentary">
+                <p><b>Who is telling it.</b> <span id="console-voices"></span></p>
+                <p><b>What it is written against.</b> <span id="console-against"></span></p>
+                <p><b>The difficulty.</b> <span id="console-crux"></span></p>
+                <p><b>Afterlife.</b> <span id="console-afterlife"></span></p>
+              </div>
+              <p class="console-extent" id="console-extent"></p>
+            </div>
+          </details>
+        </div>
+        <figure class="console-plate console-plate--sky">
+          <div class="console-plate-frame">
+            <svg id="console-sky" class="console-sky" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="console-sky-title">
+              <title id="console-sky-title">The constellation this book carries</title>
+            </svg>
+            <span aria-hidden="true">SKY <i id="console-plate-number">I</i></span>
+          </div>
+          <figcaption>
+            <span id="console-plate-caption">Ursa Major · the Wain</span>
+            <em id="console-plate-claim"></em>
+          </figcaption>
+        </figure>
+        <div class="transformation-focus">
+          <span>Recognition in focus</span>
+          <strong id="console-transformation"></strong>
+          <p id="console-transformation-note"></p>
+        </div>
+        <div class="console-cast">
+          <span class="console-label">Principal figures</span>
+          <ul id="console-cast"></ul>
+        </div>
+        <div class="console-theme-map">
+          <span class="console-label">Theme lenses</span>
+          <nav id="console-themes" aria-label="Open a theme lens"></nav>
+        </div>
+        <div class="console-actions">
+          <button class="primary-button" type="button" data-jump-detail>
+            Open the register
+            <span aria-hidden="true">↘</span>
+          </button>
+          <button class="mark-button" type="button" data-mark-read aria-pressed="false" aria-label="Mark Book I as read">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
+            <span>Mark as read</span>
+          </button>
+        </div>
+        <div class="console-progress">
+          <div><span>Reading progress</span><strong id="progress-count">0 / 24</strong></div>
+          <div class="progress-track" role="progressbar" aria-label="Books read" aria-valuemin="0" aria-valuemax="24" aria-valuenow="0"><i></i></div>
+        </div>
+      </aside>
+      <aside id="focus-folio" class="focus-folio" aria-hidden="true" aria-labelledby="focus-folio-title">
+        <button class="focus-folio-close" type="button" data-close-focus aria-label="Return to the book folio">×</button>
+        <div class="focus-folio-aureole" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="focus-folio-register">
+          <span id="focus-folio-kind">Episode III</span>
+          <span id="focus-folio-book">Book I · A House Without Its Master</span>
+        </div>
+        <div class="focus-folio-body">
+          <p id="focus-folio-index">Selected episode</p>
+          <h2 id="focus-folio-title">The proem</h2>
+          <div class="focus-folio-locus">
+            <span>Scene</span>
+            <strong id="focus-folio-locus">Olympus, and the hall of Odysseus</strong>
+          </div>
+          <p id="focus-folio-summary"></p>
+          <!-- The plain register, and the one that comes first: every key
+               point of the episode in the order Homer puts them, with the
+               recognition stated rather than implied. The interpretive
+               reading follows it. -->
+          <div class="focus-folio-beats" id="focus-folio-beats-block">
+            <span>What happens</span>
+            <ol id="focus-folio-beats"></ol>
+          </div>
+          <div class="focus-folio-reading" id="focus-folio-reading-block">
+            <span>The episode in full</span>
+            <p id="focus-folio-reading"></p>
+            <div class="focus-folio-hinge">
+              <p><b>The hinge.</b> <span id="focus-folio-turn"></span></p>
+              <p><b>What it leaves.</b> <span id="focus-folio-after"></span></p>
+            </div>
+            <div class="focus-folio-commentary" id="focus-folio-commentary">
+              <p><b>Sources.</b> <span id="focus-folio-sources"></span></p>
+              <p><b>Craft.</b> <span id="focus-folio-craft"></span></p>
+              <p><b>Afterlife.</b> <span id="focus-folio-afterlife"></span></p>
+            </div>
+          </div>
+          <div class="focus-folio-change">
+            <span>The turn</span>
+            <strong id="focus-folio-change"></strong>
+            <p id="focus-folio-note"></p>
+          </div>
+          <section class="focus-folio-relations">
+            <div>
+              <span>Figures in this orbit</span>
+              <ul id="focus-folio-cast"></ul>
+            </div>
+            <div>
+              <span>Related lenses</span>
+              <ul id="focus-folio-themes"></ul>
+            </div>
+          </section>
+          <section class="focus-folio-study" aria-label="Episode study apparatus">
+            <article>
+              <span>Motifs to follow</span>
+              <div id="focus-folio-motifs" class="focus-folio-inscriptions"></div>
+            </article>
+            <article>
+              <span>Terms in play</span>
+              <div id="focus-folio-terms" class="focus-folio-inscriptions"></div>
+            </article>
+            <article class="focus-folio-classical">
+              <span>Classical thread</span>
+              <strong id="focus-folio-tie-title"></strong>
+              <p id="focus-folio-tie"></p>
+            </article>
+            <article class="focus-folio-questions">
+              <span>Close-reading prompts</span>
+              <ol id="focus-folio-questions"></ol>
+            </article>
+            <article class="focus-folio-continuity">
+              <span>Narrative continuity</span>
+              <div id="focus-folio-continuity"></div>
+            </article>
+          </section>
+        </div>
+        <footer class="focus-folio-actions">
+          <button type="button" data-focus-prev>← Previous</button>
+          <button type="button" data-focus-atlas>Open full record ↗</button>
+          <button type="button" data-focus-next>Next →</button>
+        </footer>
+      </aside>
+      <div class="hero-book-strip" aria-label="Jump to a book">
+        <div>
+          <span>The twenty-four books of the <em>Odyssey</em></span>
+          <small>A poem of return, from a council on Olympus to a truce in an orchard</small>
+        </div>
+        <nav id="hero-book-nav"></nav>
+      </div>
+    </section>
+
+    <section id="stemma" class="stemma workspace-layer" data-workspace="stemma" aria-labelledby="stemma-title" aria-hidden="true">
+      <button class="workspace-return" type="button" data-workspace-link="instrument">← Return to instrument</button>
+      <header class="section-heading section-heading--split">
+        <div>
+          <p class="section-kicker">Stemma · descent and register</p>
+          <h2 id="stemma-title">The houses of the poem</h2>
+        </div>
+        <p>Every named figure carries three names — Greek, Latin, and the epithet Homer actually uses — a recorded descent, and a note on what it is doing in the book you are reading.</p>
+      </header>
+      <div class="stemma-toolbar atlas-toolbar">
+        <label for="stemma-book-select">Current book</label>
+        <select id="stemma-book-select"></select>
+        <div class="stemma-scope" role="group" aria-label="How much of the poem to show">
+          <button type="button" data-stemma-scope="book" aria-pressed="true">This book</button>
+          <button type="button" data-stemma-scope="house" aria-pressed="false">Whole house</button>
+          <button type="button" data-stemma-scope="poem" aria-pressed="false">Whole poem</button>
+        </div>
+        <p class="stemma-toolbar-note">Each row is one generation, counted from the founder. Charts reach four generations; descent Homer never records appears in the list rather than the diagram.</p>
+      </div>
+      <section id="master-genealogy" class="master-genealogy" aria-labelledby="master-title" hidden>
+        <header class="master-head">
+          <div>
+            <p class="section-kicker">Master genealogy</p>
+            <h3 id="master-title">Every named figure in the poem</h3>
+            <p id="master-summary"></p>
+          </div>
+          <label class="master-filter">
+            <span class="sr-only">Filter the master genealogy</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+            <input id="master-filter" type="search" autocomplete="off" placeholder="Filter by name, Greek, Latin, or house…">
+          </label>
+        </header>
+        <div id="master-bands" class="master-bands"></div>
+      </section>
+      <div class="stemma-stage">
+        <div class="pane-grip pane-grip--rail" role="separator" tabindex="0"
+             aria-orientation="vertical" aria-label="Resize the house list"
+             data-grip="stemma-rail" data-grip-property="--stemma-rail" data-grip-edge="left"
+             data-grip-min="140" data-grip-reserve="620" title="Drag to resize · double-click to reset"></div>
+        <div class="pane-grip pane-grip--list" role="separator" tabindex="0"
+             aria-orientation="vertical" aria-label="Resize the figure list"
+             data-grip="stemma-list" data-grip-property="--stemma-list" data-grip-edge="right"
+             data-grip-min="220" data-grip-reserve="560" title="Drag to resize · double-click to reset"></div>
+        <nav class="stemma-houses" id="stemma-houses" aria-label="Houses in this book"></nav>
+        <div class="stemma-plate">
+          <div class="stemma-plate-head">
+            <div>
+              <p class="eyebrow" id="stemma-house-latin"></p>
+              <h3 id="stemma-house-name"></h3>
+            </div>
+            <p id="stemma-house-note"></p>
+          </div>
+          <div class="stemma-chart-bar">
+            <p id="stemma-generations" class="stemma-generations"></p>
+            <ol id="stemma-key" class="stemma-key" aria-label="What each row means"></ol>
+          </div>
+          <div class="stemma-scroll" tabindex="0" role="group" aria-label="Descent chart, scrollable">
+            <svg id="stemma-svg" class="stemma-svg" viewBox="-460 -260 920 520" role="group" aria-labelledby="stemma-svg-title">
+              <title id="stemma-svg-title">Descent chart for the selected house. Each row is one generation.</title>
+              <defs id="stemma-defs"></defs>
+              <g id="stemma-registers" class="stemma-registers" aria-hidden="true"></g>
+              <g id="stemma-edges" class="stemma-edges" aria-hidden="true"></g>
+              <g id="stemma-nodes" class="stemma-nodes"></g>
+              <g id="stemma-rubric" class="stemma-rubric" aria-hidden="true"></g>
+            </svg>
+          </div>
+          <div class="plate-zoom" role="group" aria-label="Stemma zoom">
+            <button type="button" data-stemma-zoom="out" aria-label="Draw back from the chart">−</button>
+            <button type="button" data-stemma-zoom="in" aria-label="Close on the chart">+</button>
+            <label class="sr-only" for="stemma-zoom-range">Plate size</label>
+            <input id="stemma-zoom-range" class="plate-zoom-range" type="range"
+              min="12" max="300" step="1" value="100">
+            <button type="button" data-stemma-zoom="fit">Fit the house</button>
+            <button type="button" data-stemma-zoom="reset">Full size</button>
+            <span id="stemma-zoom-note" class="plate-zoom-note"></span>
+          </div>
+          <p id="stemma-empty" class="stemma-empty" hidden>Homer records no descent inside this house — its figures enter the poem without a line. They are listed in full beside the chart.</p>
+          <p class="stemma-hint"><b>Each row is one generation.</b> The bronze bracket is descent: it falls from a marriage to a bar the children hang from, and is dashed where a line skips a generation. The red rule joins a married pair; someone who married into the poem stands on their partner’s row. Hover or tab to a figure to light its whole line.</p>
+        </div>
+        <div class="stemma-list-wrap">
+          <h3 class="stemma-list-title">Every figure in this book <span id="stemma-count"></span></h3>
+          <ul class="stemma-list" id="stemma-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="nostos" class="orbis-overture workspace-layer" data-workspace="nostos" aria-labelledby="nostos-title" aria-hidden="true">
+      <button class="workspace-return" type="button" data-workspace-link="instrument">← Return to instrument</button>
+      <div class="orbis-sticky">
+        <div class="orbis-rings" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="orbis-copy">
+          <span>Book order is the fixed axis</span>
+          <h2 id="nostos-title">Ándra moi énnepe,<br><em>Moûsa.</em></h2>
+          <p>Tell me of the man, Muse. Homer makes the whole poem depend on a request for information — and then spends four books withholding its subject, and four more letting him describe himself.</p>
+        </div>
+        <div id="orbis-era-ribbon" class="orbis-era-ribbon" aria-label="Six movements of the poem"></div>
+      </div>
+    </section>
+
+    <section id="reckoning" class="chronology workspace-layer" data-workspace="reckoning" aria-labelledby="reckoning-title" aria-hidden="true">
+      <button class="workspace-return" type="button" data-workspace-link="instrument">← Return to instrument</button>
+      <header class="section-heading section-heading--split">
+        <div>
+          <p class="section-kicker">The reckoning of days</p>
+          <h2 id="reckoning-title">Forty days, holding ten years</h2>
+        </div>
+        <p>The Odyssey’s present action runs about forty days. Almost half the poem happens inside four of them, and the ten years of wandering are told in a single evening by the only man who saw them.</p>
+      </header>
+      <div class="anchor-line" aria-label="Fixed points in the poem's own reckoning">
+        <div><span>Troy falls</span><strong>Ten years before Book I</strong></div>
+        <div><span>Odysseus on Ogygia</span><strong>Seven of those years</strong></div>
+        <div><span>The poem opens</span><strong>Day 1 · a council on Olympus</strong></div>
+        <div><span>The wanderings told</span><strong>Night of Day 34</strong></div>
+        <div><span>The bow</span><strong>Day 39 · the feast of Apollo</strong></div>
+      </div>
+      <div class="book-rail-wrap">
+        <button class="rail-nudge rail-nudge--left" type="button" aria-label="Scroll books left">←</button>
+        <div id="book-rail" class="book-rail" tabindex="0" aria-label="Twenty-four-book reckoning"></div>
+        <button class="rail-nudge rail-nudge--right" type="button" aria-label="Scroll books right">→</button>
+      </div>
+      <div id="era-bands" class="era-bands"></div>
+    </section>
+
+    <section id="register" class="atlas workspace-layer" data-workspace="register" aria-labelledby="register-title" aria-hidden="true">
+      <button class="workspace-return" type="button" data-workspace-link="instrument">← Return to instrument</button>
+      <header class="section-heading">
+        <p class="section-kicker">The reader’s register</p>
+        <h2 id="register-title">Every return leaves a relation</h2>
+        <p class="section-intro">Use the concordance for recurrence, and the four reading lenses for close study of the open book.</p>
+      </header>
+      <div id="concordance" class="scholar-grid scholar-grid--pair">
+        <aside class="scholar-book-index" aria-label="Books in the poem">
+          <header><span>Books I–XXIV</span><strong>24</strong></header>
+          <div id="scholar-book-list"></div>
+          <div class="scholar-progress"><span>Your progress</span><strong id="scholar-progress-count">0 / 24</strong><i></i></div>
+        </aside>
+        <aside class="concordance-panel" aria-labelledby="concordance-title">
+          <header>
+            <span>Names &amp; recurrences</span>
+            <h3 id="concordance-title">Entity concordance</h3>
+            <label>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+              <input id="concordance-search" type="search" placeholder="Trace a figure…">
+            </label>
+          </header>
+          <nav id="concordance-filters" aria-label="Concordance filters"></nav>
+          <div id="concordance-results"></div>
+        </aside>
+      </div>
+      <div class="atlas-toolbar" aria-label="Book detail controls">
+        <label for="atlas-book-select">Current book</label>
+        <select id="atlas-book-select"></select>
+        <div class="view-tabs" role="tablist" aria-label="Study lens">
+          <button id="tab-episodes" role="tab" aria-selected="true" aria-controls="panel-episodes" data-tab="episodes">Episodes</button>
+          <button id="tab-cast" role="tab" aria-selected="false" aria-controls="panel-cast" data-tab="cast">Cast</button>
+          <button id="tab-themes" role="tab" aria-selected="false" aria-controls="panel-themes" data-tab="themes">Themes &amp; terms</button>
+          <button id="tab-ties" role="tab" aria-selected="false" aria-controls="panel-ties" data-tab="ties">Classical ties</button>
+        </div>
+      </div>
+      <div class="atlas-stage">
+        <aside class="atlas-index" aria-label="Book orientation">
+          <div class="atlas-book-number" id="atlas-number">I</div>
+          <p id="atlas-era">The Telemachy</p>
+          <h3 id="atlas-title-label">A House Without Its Master</h3>
+          <dl>
+            <div><dt>Movement</dt><dd id="atlas-date"></dd></div>
+            <div><dt>Primary setting</dt><dd id="atlas-setting"></dd></div>
+            <div><dt>Episodes</dt><dd id="atlas-count"></dd></div>
+          </dl>
+          <button class="note-button" type="button" data-note-current>Add a reading note</button>
+        </aside>
+        <div class="atlas-content">
+          <section id="panel-episodes" role="tabpanel" aria-labelledby="tab-episodes"></section>
+          <section id="panel-cast" role="tabpanel" aria-labelledby="tab-cast" hidden></section>
+          <section id="panel-themes" role="tabpanel" aria-labelledby="tab-themes" hidden></section>
+          <section id="panel-ties" role="tabpanel" aria-labelledby="tab-ties" hidden></section>
+        </div>
+      </div>
+    </section>
+
+    <section id="lexicon" class="lexicon workspace-layer" data-workspace="lexicon" aria-labelledby="lexicon-title" aria-hidden="true">
+      <button class="workspace-return" type="button" data-workspace-link="instrument">← Return to instrument</button>
+      <header class="section-heading section-heading--split">
+        <div>
+          <p class="section-kicker">Language of return</p>
+          <h2 id="lexicon-title">Homeric lexicon <small id="lexicon-count"></small></h2>
+        </div>
+        <label class="lexicon-search">
+          <span class="sr-only">Filter glossary</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+          <input id="lexicon-filter" type="search" placeholder="Filter terms, people, places…">
+        </label>
+      </header>
+      <div class="lexicon-layout">
+        <nav id="lexicon-categories" class="lexicon-categories" aria-label="Glossary categories"></nav>
+        <div id="lexicon-list" class="lexicon-list"></div>
+      </div>
+    </section>
+
+    <section id="method" class="method workspace-layer" data-workspace="method" aria-labelledby="method-title" aria-hidden="true">
+      <button class="workspace-return" type="button" data-workspace-link="instrument">← Return to instrument</button>
+      <div class="method-seal" aria-hidden="true"><span>≈</span></div>
+      <div>
+        <p class="section-kicker">How to read the reckoning</p>
+        <h2 id="method-title">A poem that tells itself out of order</h2>
+      </div>
+      <div class="method-copy">
+        <p>Homer starts in the tenth year of a ten-year return, spends four books on a son who has not met his father, and lets the hero appear in Book V as a man sitting on a beach crying. The wanderings everyone remembers — the Cyclops, Circe, the dead, the Sirens — are a flashback narrated at a dinner party by the only surviving witness.</p>
+        <p>This companion therefore keeps two clocks. The <strong>day count</strong> is the poem’s present, about forty days from the council on Olympus to the truce in Laertes’ orchard. The <strong>told order</strong> is the order you read in. Where a book reports events from outside its own day, the interface says whose report it is, because in this poem that is rarely a neutral fact.</p>
+        <div class="method-sources">
+          <span>Research basis</span>
+          <a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0136" target="_blank" rel="noreferrer">Homer, Odyssey · Perseus ↗</a>
+          <a href="https://chs.harvard.edu/" target="_blank" rel="noreferrer">Center for Hellenic Studies ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside id="figure-sheet" class="figure-sheet" aria-hidden="true" aria-labelledby="figure-sheet-name" role="dialog" aria-modal="false">
+    <button class="figure-sheet-close" type="button" data-close-figure aria-label="Close this figure">×</button>
+    <header class="figure-sheet-head">
+      <p id="figure-sheet-order">King of Ithaca</p>
+      <h2 id="figure-sheet-name">Odysseus</h2>
+      <p id="figure-sheet-domain"></p>
+    </header>
+    <dl class="figure-registers" aria-label="Names in three registers">
+      <div><dt>Greek</dt><dd id="figure-greek"></dd></div>
+      <div><dt>Latin</dt><dd id="figure-roman"></dd></div>
+      <div><dt>Homer’s formula</dt><dd id="figure-ovid"></dd></div>
+    </dl>
+    <section class="figure-descent" aria-labelledby="figure-descent-title">
+      <h3 id="figure-descent-title">Descent</h3>
+      <p class="figure-house" id="figure-house"></p>
+      <dl id="figure-lines" class="figure-lines"></dl>
+      <p class="figure-descent-note" id="figure-descent-note" hidden>Ancient sources disagree about parts of this descent; variants are noted where they matter.</p>
+    </section>
+    <section class="figure-who" aria-labelledby="figure-who-title">
+      <h3 id="figure-who-title">Who they are</h3>
+      <p id="figure-who"></p>
+    </section>
+    <section class="figure-here" aria-labelledby="figure-here-title">
+      <h3 id="figure-here-title">What they are doing here</h3>
+      <p class="figure-here-scope" id="figure-here-scope"></p>
+      <p id="figure-here"></p>
+    </section>
+    <section class="figure-appearances" aria-labelledby="figure-appearances-title">
+      <h3 id="figure-appearances-title">Across the poem</h3>
+      <ul id="figure-appearances"></ul>
+    </section>
+    <footer class="figure-sheet-actions">
+      <button type="button" data-figure-stemma>See this line in the stemma ↗</button>
+      <button type="button" data-figure-search>Find every mention</button>
+    </footer>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="footer-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p><strong>Nóstimon êmar.</strong><span>The day of coming home.</span></p>
+    <p class="footer-note">Built as a reading companion. The day count is the poem’s own; interpretations are editorial aids.</p>
+    <a href="#top">Return to the instrument ↑</a>
+  </footer>
+
+  <dialog id="search-dialog" class="search-dialog">
+    <div class="dialog-head">
+      <label>
+        <span class="sr-only">Search books, episodes, characters, themes, and terms</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+        <input id="global-search" type="search" autocomplete="off" placeholder="Search Eumaeus, xenia, the scar, Scheria…">
+      </label>
+      <button type="button" data-close-dialog aria-label="Close search">Esc</button>
+    </div>
+    <div id="search-results" class="search-results">
+      <p class="empty-prompt">Search across all 24 books, episodes, principal figures, themes, terminology, and classical ties.</p>
+    </div>
+  </dialog>
+
+  <dialog id="notes-dialog" class="notes-dialog">
+    <div class="notes-head">
+      <div><p>Private to this browser</p><h2>Reading marginalia</h2></div>
+      <button type="button" data-close-dialog aria-label="Close notes">×</button>
+    </div>
+    <form id="note-form">
+      <label for="note-book">Book</label>
+      <select id="note-book"></select>
+      <label for="note-text">Your note</label>
+      <textarea id="note-text" rows="5" placeholder="Record a pattern, question, or passage to revisit…" required></textarea>
+      <button class="primary-button" type="submit">Save note</button>
+    </form>
+    <div class="notes-portability">
+      <button type="button" data-export-notes>Export marginalia</button>
+      <label>Import marginalia<input id="notes-import" type="file" accept="application/json"></label>
+    </div>
+    <div id="notes-list" class="notes-list"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

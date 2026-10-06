@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Carta del Cervello: the Obsidian second brain drawn as a portolan sea chart, from its own resolved link graph and git history.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23191612'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23D4685A' stroke-width='3'/%3E%3Cpath d='M32 6v52M6 32h52' stroke='%23E4DBC6' stroke-width='2'/%3E%3C/svg%3E">
+<title>Carta del Cervello: a portolan of the second brain</title>
+<style>
+  :root{
+    --vellum:#D8D0BC; --ink:#241F1A; --ink-soft:#4C4438;
+    --vermilion:#A03026; --verdigris:#3F5E50; --ochre:#8F681C; --silt:#5E5648;
+    --rule:#A99C7E; --plate:#D2C9B2;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --vellum:#191612; --ink:#E4DBC6; --ink-soft:#B4A88E;
+      --vermilion:#D4685A; --verdigris:#86AE97; --ochre:#DFB350; --silt:#7C7360;
+      --rule:#443D31; --plate:#1F1B16; }
+  }
+  :root[data-theme="dark"]{ --vellum:#191612; --ink:#E4DBC6; --ink-soft:#B4A88E;
+    --vermilion:#D4685A; --verdigris:#86AE97; --ochre:#DFB350; --silt:#7C7360;
+    --rule:#443D31; --plate:#1F1B16; }
+  :root[data-theme="light"]{ --vellum:#D8D0BC; --ink:#241F1A; --ink-soft:#4C4438;
+    --vermilion:#A03026; --verdigris:#3F5E50; --ochre:#8F681C; --silt:#5E5648;
+    --rule:#A99C7E; --plate:#D2C9B2; }
+
+  body{ margin:0; background:var(--vellum); color:var(--ink);
+    font-family:"Hoefler Text","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    font-size:17.5px; line-height:1.62; }
+  .sheet{ max-width:1080px; margin:0 auto; padding:clamp(30px,5vw,68px) clamp(20px,4vw,40px) 100px;
+    display:flex; flex-direction:column; gap:46px; }
+
+  /* title cartouche: portolan charts carry their title in a ruled panel, not a hero */
+  .cartouche{ border:1.5px solid var(--ink); padding:26px 30px 24px; position:relative;
+    background:var(--plate); max-width:min(100%,660px); }
+  .cartouche::after{ content:""; position:absolute; inset:5px; border:.5px solid var(--rule);
+    pointer-events:none; }
+  .cartouche h1{ font-size:clamp(30px,5vw,46px); line-height:1.06; margin:0; font-weight:400;
+    letter-spacing:-.012em; text-wrap:balance; }
+  .cartouche h1 i{ color:var(--vermilion); }
+  .dateline{ margin:14px 0 0; font-size:14.5px; color:var(--ink-soft); font-style:italic; }
+
+  .standfirst{ max-width:64ch; font-size:19px; margin:0; text-wrap:pretty; }
+  h2{ font-size:24px; font-weight:400; margin:0 0 .55em; letter-spacing:-.008em; }
+  .rule{ height:1px; background:var(--rule); border:0; margin:0; }
+
+  figure{ margin:0; }
+  .plate-frame{ background:var(--plate); border:1px solid var(--ink); padding:10px; }
+  svg{ display:block; width:100%; height:auto; }
+  figcaption{ font-size:15px; color:var(--ink-soft); margin-top:14px; max-width:68ch; }
+
+  .legend{ display:flex; flex-wrap:wrap; gap:12px 28px; font-size:14.5px; color:var(--ink-soft); }
+  .legend i{ display:inline-block; width:24px; height:9px; vertical-align:middle; margin-right:8px; }
+
+  .scroller{ overflow-x:auto; }
+  table{ border-collapse:collapse; width:100%; font-size:15.5px; min-width:600px; }
+  caption{ text-align:left; font-size:15px; color:var(--ink-soft); padding-bottom:12px;
+    max-width:70ch; font-style:italic; }
+  th,td{ text-align:left; padding:10px 16px 10px 0; border-bottom:1px solid var(--rule); }
+  th{ font-size:12.5px; letter-spacing:.09em; color:var(--ink-soft); font-weight:400;
+    border-bottom:1px solid var(--ink); font-variant:small-caps; }
+  td.n{ text-align:right; font-family:"SF Mono",ui-monospace,Menlo,monospace;
+    font-variant-numeric:tabular-nums; font-size:14.5px; }
+  .terr{ font-variant:small-caps; letter-spacing:.045em; }
+  .flag{ color:var(--vermilion); }
+  .quiet{ color:var(--ink-soft); }
+
+  .marginalia{ border-left:2px solid var(--vermilion); padding:3px 0 3px 22px;
+    max-width:66ch; color:var(--ink-soft); font-size:16px; font-style:italic; }
+  .marginalia b{ font-style:normal; color:var(--ink); font-weight:400; }
+  .cols{ display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:32px 46px; }
+  .finding h3{ font-size:17.5px; font-weight:400; margin:0 0 .35em; }
+  .finding h3 b{ color:var(--vermilion); font-weight:400; margin-right:9px; font-variant:small-caps;
+    letter-spacing:.06em; }
+  .finding p{ margin:0; font-size:16px; color:var(--ink-soft); }
+  :focus-visible{ outline:2px solid var(--vermilion); outline-offset:3px; }
+  @media (prefers-reduced-motion:no-preference){
+    .rhumb{ stroke-dasharray:1600; stroke-dashoffset:1600; animation:draw 1.6s ease-out forwards; }
+    @keyframes draw{ to{ stroke-dashoffset:0; } }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <header class="cartouche">
+    <h1>Carta del Cervello<br><i>a portolan of the second brain</i></h1>
+    <p class="dateline">Drawn 4 October 2026 from 485 soundings, after the manner of the chartmakers
+    of Majorca.</p>
+  </header>
+
+  <p class="standfirst">Ten territories, 2,334 sailings between them, and one coast nobody has
+  visited since the charts were recopied. This plate is drawn from Obsidian's own resolved link
+  graph rather than text scraped for double brackets, and from git history rather than file
+  timestamps, because the timestamps were rewritten in bulk when the vault left iCloud and now
+  report every shore as new.</p>
+
+  <hr class="rule">
+
+  <figure>
+    <div class="plate-frame">
+      <svg id="chart" viewBox="-70 0 1140 810" role="img" aria-labelledby="ct cd">
+        <title id="ct">Portolan chart of the vault</title>
+        <desc id="cd">Ten territories arranged around a compass rose. Arc length is note count,
+        wash is silt, and the red outer tick is the orphaned share. Thirty-seven rhumb lines show
+        link traffic across territory borders. Archives is drawn silted; Recruiting carries the
+        largest orphaned share.</desc>
+      </svg>
+    </div>
+    <figcaption>Arc length is population, wash is silt, and the vermilion tick on the seaward side
+    is the orphaned share of that territory. Ports are named where a note carries more than thirty
+    backlinks. Rhumb lines are drawn wherever four or more links cross a border.</figcaption>
+  </figure>
+
+  <div class="legend">
+    <span><i style="background:var(--verdigris)"></i>worked within days</span>
+    <span><i style="background:var(--ochre)"></i>a month at anchor</span>
+    <span><i style="background:var(--silt)"></i>silted, beyond the record</span>
+    <span><i style="background:var(--vermilion)"></i>orphaned holdings</span>
+  </div>
+
+  <hr class="rule">
+
+  <section>
+    <h2>Gazetteer of territories</h2>
+    <div class="scroller">
+      <table>
+        <caption>Silt is the median days since a note in that territory was last committed. The
+        record begins 26 May 2026, when the repository was recreated. “At censor” counts notes whose
+        true age cannot be known because it predates that date, so every figure here is a floor and
+        never a ceiling.</caption>
+        <thead><tr>
+          <th scope="col">Territory</th><th scope="col" class="n">Notes</th>
+          <th scope="col" class="n">Silt (days)</th><th scope="col" class="n">At censor</th>
+          <th scope="col" class="n">Orphaned</th><th scope="col">Reading</th>
+        </tr></thead>
+        <tbody id="gaz"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <h2>What the plate shows</h2>
+    <div class="cols">
+      <div class="finding"><h3><b>i</b>The archive is silted, correctly</h3>
+        <p>Eighteen of twenty-six holdings in <span class="terr">40 Archives</span> sit at the
+        censor, untouched for the whole life of the record. In an archive that is the intended
+        behaviour rather than decay. It is the one coast that should read this way.</p></div>
+      <div class="finding"><h3><b>ii</b>The unreachable coast is Recruiting</h3>
+        <p>Seven of eleven notes in <span class="terr">Recruiting</span>, sixty-four percent of
+        the territory, link to nothing and are linked from nothing. The coast is worked within
+        days, yet most of it cannot be reached from any other shore.</p></div>
+      <div class="finding"><h3><b>iii</b>The stemma confirms the boot order</h3>
+        <p><i>Identity</i> carries sixty-one backlinks, more than any other note, exactly as the
+        documented Tier 0 claims. Instruction layer and link graph agree, which was not the expected
+        result.</p></div>
+      <div class="finding"><h3><b>iv</b>One capital is undeclared</h3>
+        <p><i>AXE_OS Governing Spec</i> ties for the fourth largest port at forty-two backlinks and
+        appears nowhere in the documented boot sequence. The brain leans on it harder than its own
+        instructions admit.</p></div>
+      <div class="finding"><h3><b>v</b>One lane runs both ways</h3>
+        <p><span class="terr">90 Meta</span> sends one hundred and nine sailings to
+        <span class="terr">30 Resources</span> and receives ninety-one back, the only heavy route in
+        near balance. The next two heaviest lanes, from Daily and from Projects, both run toward
+        Meta.</p></div>
+      <div class="finding"><h3><b>vi</b>Half of all traffic crosses a border</h3>
+        <p>1034 of 2,334 links leave their territory. A brain filed in folders but read as a graph:
+        the folders describe where things sit, not how they are used.</p></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <p class="marginalia"><b>On the reliability of this chart.</b> Three instruments were tried and two
+  rejected. File modification times report every territory as two days old, an artefact of the move
+  out of iCloud rather than a fact about the vault. Frontmatter dates cover only eighty-five percent
+  of notes. Git history is used here and is honest, but cannot see before 26 May 2026. Where a coast
+  is drawn silted, it is at least that silted.</p>
+</div>
+
+<script>
+const DATA={"terr": [{"name": "90 Meta", "notes": 109, "silt": 85, "cen": 7, "orph": 7, "read": "silted, beyond the record"}, {"name": "50 Daily", "notes": 106, "silt": 73, "cen": 3, "orph": 17, "read": "silted, beyond the record"}, {"name": "10 Projects", "notes": 67, "silt": 58, "cen": 1, "orph": 0, "read": "no orphans, a clean territory"}, {"name": "20 Areas", "notes": 64, "silt": 45, "cen": 1, "orph": 0, "read": "no orphans, a clean territory"}, {"name": "30 Resources", "notes": 60, "silt": 58, "cen": 0, "orph": 1, "read": "current"}, {"name": "60 People", "notes": 37, "silt": 58, "cen": 0, "orph": 0, "read": "no orphans, a clean territory"}, {"name": "40 Archives", "notes": 26, "silt": 131, "cen": 18, "orph": 0, "read": "silted, beyond the record"}, {"name": "Recruiting", "notes": 11, "silt": 11, "cen": 0, "orph": 7, "read": "worked, yet 64 percent unreachable"}, {"name": "(root)", "notes": 4, "silt": 34, "cen": 1, "orph": 0, "read": "no orphans, a clean territory"}, {"name": "00 Inbox", "notes": 1, "silt": 130, "cen": 0, "orph": 0, "read": "no orphans, a clean territory"}], "lanes": [["90 Meta", "30 Resources", 109], ["50 Daily", "90 Meta", 105], ["30 Resources", "90 Meta", 91], ["10 Projects", "90 Meta", 87], ["50 Daily", "10 Projects", 72], ["(root)", "90 Meta", 70], ["60 People", "90 Meta", 56], ["90 Meta", "10 Projects", 44], ["90 Meta", "60 People", 40], ["(root)", "30 Resources", 33], ["10 Projects", "30 Resources", 29], ["20 Areas", "90 Meta", 27], ["30 Resources", "60 People", 22], ["90 Meta", "(root)", 22], ["(root)", "60 People", 19], ["(root)", "10 Projects", 19], ["50 Daily", "60 People", 17], ["50 Daily", "30 Resources", 16], ["50 Daily", "(root)", 14], ["20 Areas", "30 Resources", 10], ["50 Daily", "20 Areas", 10], ["40 Archives", "10 Projects", 9], ["90 Meta", "40 Archives", 9], ["10 Projects", "50 Daily", 8], ["00 Inbox", "30 Resources", 7], ["20 Areas", "(root)", 7], ["20 Areas", "10 Projects", 7], ["40 Archives", "30 Resources", 7], ["10 Projects", "20 Areas", 6], ["30 Resources", "10 Projects", 6], ["60 People", "30 Resources", 6], ["10 Projects", "60 People", 5], ["30 Resources", "(root)", 5], ["40 Archives", "90 Meta", 5], ["40 Archives", "60 People", 5], ["00 Inbox", "90 Meta", 4], ["90 Meta", "20 Areas", 4]], "ports": [["Identity", 61, "90 Meta"], ["Work", 51, "90 Meta"], ["Course Intelligence", 48, "20 Areas"], ["AXE_OS_Governing_Spec", 42, "90 Meta"], ["Career", 42, "90 Meta"], ["Education", 41, "90 Meta"]]};
+const NS="http://www.w3.org/2000/svg", svg=document.getElementById("chart");
+const CX=500,CY=378,R=224;
+const el=(t,a)=>{const n=document.createElementNS(NS,t);for(const k in a)n.setAttribute(k,a[k]);return n;};
+const total=DATA.terr.reduce((s,t)=>s+t.notes,0);
+let ang=-Math.PI*0.93,pos={};
+DATA.terr.forEach(t=>{const span=(t.notes/total)*Math.PI*2*0.87;
+  t.a0=ang;t.a1=ang+span;t.mid=ang+span/2;ang+=span+(Math.PI*2*0.13)/DATA.terr.length;
+  pos[t.name]=[CX+Math.cos(t.mid)*R,CY+Math.sin(t.mid)*R];});
+const wash=s=>s>=70?"var(--silt)":s>=25?"var(--ochre)":"var(--verdigris)";
+const arcP=(r,a0,a1)=>`M${CX+Math.cos(a0)*r} ${CY+Math.sin(a0)*r} A${r} ${r} 0 ${a1-a0>Math.PI?1:0} 1 ${CX+Math.cos(a1)*r} ${CY+Math.sin(a1)*r}`;
+
+const rose=el("g",{opacity:".3"});
+for(let i=0;i<32;i++){const a=i*Math.PI/16;
+  rose.appendChild(el("line",{x1:CX,y1:CY,x2:CX+Math.cos(a)*R*1.3,y2:CY+Math.sin(a)*R*1.3,
+    stroke:"var(--rule)","stroke-width":i%4===0?1:.4}));}
+svg.appendChild(rose);
+[R*0.5,R*0.75,R].forEach(r=>svg.appendChild(el("circle",{cx:CX,cy:CY,r,fill:"none",
+  stroke:"var(--rule)","stroke-width":.5,opacity:".55"})));
+
+const lanes=el("g",{fill:"none","stroke-linecap":"round"});
+DATA.lanes.forEach(([a,b,n],i)=>{if(!pos[a]||!pos[b])return;
+  const[x1,y1]=pos[a],[x2,y2]=pos[b],mx=(x1+x2)/2,my=(y1+y2)/2,k=.3;
+  const p=el("path",{d:`M${x1} ${y1} Q${CX+(mx-CX)*k} ${CY+(my-CY)*k} ${x2} ${y2}`,
+    stroke:n>=84?"var(--vermilion)":"var(--ink)","stroke-width":Math.max(.55,n/28),
+    opacity:(0.16+n/340).toFixed(2),class:"rhumb"});
+  p.style.animationDelay=(i*42)+"ms";lanes.appendChild(p);});
+svg.appendChild(lanes);
+
+DATA.terr.forEach(t=>{
+  const w=7+(t.notes/total)*104;
+  svg.appendChild(el("path",{d:arcP(R,t.a0,t.a1),fill:"none",stroke:wash(t.silt),
+    "stroke-width":w,"stroke-linecap":"butt",opacity:".93"}));
+  // landward hatching, the portolan convention for a charted coast
+  const hg=el("g",{opacity:".33"});
+  const steps=Math.max(3,Math.round((t.a1-t.a0)/0.028));
+  for(let i=1;i<steps;i++){const a=t.a0+(t.a1-t.a0)*(i/steps),r0=R-w/2,r1=r0-7;
+    hg.appendChild(el("line",{x1:CX+Math.cos(a)*r0,y1:CY+Math.sin(a)*r0,
+      x2:CX+Math.cos(a)*r1,y2:CY+Math.sin(a)*r1,stroke:wash(t.silt),"stroke-width":.85}));}
+  svg.appendChild(hg);
+  if(t.orph>0){const a1=t.a0+(t.a1-t.a0)*(t.orph/t.notes);
+    svg.appendChild(el("path",{d:arcP(R+w/2+5,t.a0,a1),fill:"none",stroke:"var(--vermilion)",
+      "stroke-width":3.5,"stroke-linecap":"butt"}));}
+  const lx=CX+Math.cos(t.mid)*(R+w/2+28),ly=CY+Math.sin(t.mid)*(R+w/2+28);
+  let deg=t.mid*180/Math.PI,flip=deg>90||deg<-90;
+  const g=el("g",{transform:`translate(${lx} ${ly}) rotate(${flip?deg+180:deg})`});
+  const a1t=el("text",{"text-anchor":flip?"end":"start",dy:".33em",fill:"var(--ink)","font-size":"16",
+    "font-family":'"Hoefler Text","Iowan Old Style",Palatino,Georgia,serif',"letter-spacing":".07em"});
+  a1t.textContent=t.name.replace(/^\d+\s/,"").toUpperCase();g.appendChild(a1t);
+  const a2t=el("text",{"text-anchor":flip?"end":"start",dy:"1.7em",fill:"var(--ink-soft)",
+    "font-size":"12","font-family":'"SF Mono",ui-monospace,Menlo,monospace',"letter-spacing":".07em"});
+  a2t.textContent=`${t.notes} · ${t.silt}d`+(t.orph?` · ${t.orph} orphaned`:"");
+  g.appendChild(a2t);svg.appendChild(g);});
+
+const used={};
+DATA.ports.forEach(([name,back,region])=>{
+  const t=DATA.terr.find(x=>x.name===region);if(!t)return;
+  const i=(used[region]=(used[region]||0)+1),den=region==="90 Meta"?5.2:3.2;
+  const a=t.a0+(t.a1-t.a0)*(i/den),w=7+(t.notes/total)*104,r0=R-w/2-16;
+  let deg=a*180/Math.PI,flip=deg>90||deg<-90;
+  const g=el("g",{transform:`translate(${CX+Math.cos(a)*r0} ${CY+Math.sin(a)*r0}) rotate(${flip?deg+180:deg})`});
+  const tx=el("text",{"text-anchor":flip?"start":"end",dy:".32em",
+    fill:back>=41?"var(--vermilion)":"var(--ink)","font-size":"11.5",
+    "font-family":'"Hoefler Text","Iowan Old Style",Palatino,Georgia,serif',"letter-spacing":".03em"});
+  tx.textContent=name+" · "+back;g.appendChild(tx);svg.appendChild(g);});
+
+const wr=el("g",{});
+for(let i=0;i<8;i++){const a=i*Math.PI/4,L=i%2?30:60;
+  wr.appendChild(el("path",{d:`M${CX} ${CY} L${CX+Math.cos(a-0.05)*46} ${CY+Math.sin(a-0.05)*46} L${CX+Math.cos(a)*L} ${CY+Math.sin(a)*L} Z`,
+    fill:i%2?"var(--ink-soft)":"var(--vermilion)",opacity:i%2?".55":".85"}));}
+wr.appendChild(el("circle",{cx:CX,cy:CY,r:8,fill:"var(--plate)",stroke:"var(--ink)","stroke-width":1.2}));
+svg.appendChild(wr);
+const cap=el("text",{x:CX,y:CY+96,"text-anchor":"middle",fill:"var(--ink-soft)","font-size":"11.5",
+  "font-family":'"SF Mono",ui-monospace,Menlo,monospace',"letter-spacing":".16em"});
+cap.textContent=total+" notes · 2,334 links · 44% cross a border";svg.appendChild(cap);
+
+document.getElementById("gaz").innerHTML=DATA.terr.map(t=>`
+ <tr><td class="terr">${t.name}</td><td class="n">${t.notes}</td>
+ <td class="n ${t.silt>=70?"flag":""}">${t.silt}</td>
+ <td class="n ${t.cen>=10?"flag":"quiet"}">${t.cen||"–"}</td>
+ <td class="n ${t.orph>=10?"flag":"quiet"}">${t.orph||"–"}</td>
+ <td class="quiet">${t.read}</td></tr>`).join("");
+</script>
+</body>
+</html>
